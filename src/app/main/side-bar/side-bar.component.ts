@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-side-bar',
@@ -9,7 +10,11 @@ export class SideBarComponent implements OnInit {
   @Input() isSideBarOpen: boolean;
   @Output('toggleSideBar') toggleSideBar = new EventEmitter();
 
-  constructor() {}
+  constructor(public router: Router) {}
+  activeRoute: string;
+  sideBarRoutes: string[] = [
+    'dashboard' /**'play', 'add', 'stats', 'settings' */,
+  ];
 
   ngOnInit(): void {}
 
