@@ -6,7 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent implements OnInit {
+  isSideBaeOpen: boolean;
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.isSideBaeOpen = true;
+  }
 }
