@@ -96,6 +96,19 @@ export type Word = {
   deckWords: Array<DeckWord>;
 };
 
+export type GetUserByIdQueryVariables = Exact<{
+  id: Scalars['Int'];
+}>;
+
+
+export type GetUserByIdQuery = (
+  { __typename?: 'Query' }
+  & { User: (
+    { __typename?: 'User' }
+    & Pick<User, 'id' | 'firstName' | 'lastName' | 'email'>
+  ) }
+);
+
 export type GetUsersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -107,6 +120,27 @@ export type GetUsersQuery = (
   )> }
 );
 
+export const GetUserByIdDocument = gql`
+    query GetUserById($id: Int!) {
+  User(id: $id) {
+    id
+    firstName
+    lastName
+    email
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetUserByIdGQL extends Apollo.Query<GetUserByIdQuery, GetUserByIdQueryVariables> {
+    document = GetUserByIdDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const GetUsersDocument = gql`
     query GetUsers {
   Users {

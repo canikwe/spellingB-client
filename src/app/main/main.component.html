@@ -1,6 +1,6 @@
 <mat-drawer-container class="main-container" [hasBackdrop]="false">
-  <mat-drawer #drawer mode="push" [opened]='isSideBaeOpen'>
-    <app-side-bar [isSideBarOpen]='isSideBaeOpen' (toggleSideBar)='isSideBaeOpen = !isSideBaeOpen'></app-side-bar>
+  <mat-drawer #drawer mode="push" [opened]='isSideBarOpen'>
+    <app-side-bar [isSideBarOpen]='isSideBarOpen' (toggleSideBar)='isSideBarOpen = !isSideBarOpen'></app-side-bar>
   </mat-drawer>
   <mat-drawer-content>
     <router-outlet></router-outlet>
