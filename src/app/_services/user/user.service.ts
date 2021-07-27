@@ -10,9 +10,7 @@ export class UserService {
 
   loggedInUser: Partial<User>;
 
-  getUser = (id: number) => {
-    return this.getUserByIdQuery.fetch({ id });
-  };
+  getUser = (id: number) => this.getUserByIdQuery.fetch({ id });
 
   fakeLogIn = () => {
     this.getUser(1).subscribe(({ data: { User } }) => {
