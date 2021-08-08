@@ -1,13 +1,15 @@
 .deck-card {
-  background-color: lightblue;
+  // background-color: lightblue;
+  -webkit-box-shadow: 0px 0px 19px -1px rgba(127, 127, 127, 0.49);
+  box-shadow: 0px 0px 19px -1px rgba(127, 127, 127, 0.49);
+  padding: 1em;
+  border-radius: 15px;
 }
 
 .title {
   margin-bottom: 0;
-  text-align: center;
 }
 
 .date {
-  text-align: right;
   font-size: smaller;
 }

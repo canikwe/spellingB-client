@@ -8,6 +8,7 @@ import { Deck } from '../../../../generated/graphql';
 })
 export class DeckListItemComponent implements OnInit {
   @Input() deck: Partial<Deck>;
+  @Input() backgroundColor: string;
 
   constructor() {}
 

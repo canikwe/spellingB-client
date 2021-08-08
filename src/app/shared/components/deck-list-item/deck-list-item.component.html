@@ -1,7 +1,7 @@
-<mat-card class='deck-card'>
+<mat-card class='deck-card' [ngStyle]="{ backgroundColor: backgroundColor }">
   <h3 class='title'>{{ deck.title }}</h3>
 
+  <mat-card-subtitle class='date'>Created On: {{deck.createdAt | date: 'mediumDate'}}</mat-card-subtitle>
   <mat-card-footer>
-    <mat-card-subtitle class='date'>Created On: {{deck.createdAt | date: 'mediumDate'}}</mat-card-subtitle>
   </mat-card-footer>
 </mat-card>
