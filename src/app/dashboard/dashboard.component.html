@@ -1,4 +1,7 @@
+<!-- TODO: move wrapper padding to global styles for consistency -->
 <section class='dashboard-wrapper'>
-  <h1>Welcome, {{ userService.loggedInUser?.firstName }}</h1>
+  <!-- TODO: extract to reusable component -->
+  <h1 class='heading'>{{ greeting }}</h1>
   <app-deck-list></app-deck-list>
 </section>
+<mat-divider></mat-divider>

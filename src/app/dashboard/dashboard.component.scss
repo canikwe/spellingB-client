@@ -3,4 +3,9 @@
   display: grid;
   grid-template-rows: 30% 70%;
   row-gap: 2em;
+  width: 79%; /* temporary hack. TODO: figure out misalignment issue when width is 100%*/
+}
+
+.heading {
+  font-weight: 300;
 }

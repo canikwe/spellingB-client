@@ -8,11 +8,6 @@ import { MatButtonModule } from '@angular/material/button';
 @NgModule({
   declarations: [DeckListComponent, DeckListItemComponent],
   imports: [CommonModule, MatCardModule, MatButtonModule],
-  exports: [
-    DeckListComponent,
-    DeckListItemComponent,
-    MatCardModule,
-    MatButtonModule,
-  ],
+  exports: [DeckListComponent, DeckListItemComponent],
 })
 export class SharedModule {}
