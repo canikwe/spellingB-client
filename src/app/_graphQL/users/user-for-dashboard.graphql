@@ -1,0 +1,12 @@
+query GetUserForDashboard($id: Int!) {
+  User(id: $id) {
+    id
+    firstName
+    lastName
+    decks {
+      id
+      title
+      createdAt
+    }
+  }
+}

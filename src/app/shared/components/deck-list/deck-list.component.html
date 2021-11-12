@@ -1,5 +1,4 @@
 <section class='deck-list'>
-  <app-deck-list-item></app-deck-list-item>
-  <app-deck-list-item></app-deck-list-item>
-  <app-deck-list-item></app-deck-list-item>
+  <app-deck-list-item *ngFor="let deck of decks; let i = index" [backgroundColor]='backgroundColorMap[i]' [deck]='deck'>
+  </app-deck-list-item>
 </section>
