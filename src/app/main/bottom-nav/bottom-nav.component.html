@@ -1,11 +1,5 @@
-<mat-toolbar class="toolbarNav">
-  <button mat-icon-button color='primary' routerLink='/dashboard'>
-    <mat-icon>star_border</mat-icon>
-  </button>
-  <button mat-icon-button color='primary' routerLink='/'>
-    <mat-icon>favorite_border</mat-icon>
-  </button>
-  <button mat-icon-button color='primary' (click)="(null)">
-    <mat-icon>history</mat-icon>
+<mat-toolbar class="toolbar-nav">
+  <button *ngFor='let route of mainService.routes' mat-icon-button color='primary' [routerLink]='route.link'>
+    <mat-icon>{{ route.icon }}</mat-icon>
   </button>
 </mat-toolbar>

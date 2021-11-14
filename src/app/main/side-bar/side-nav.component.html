@@ -2,9 +2,9 @@
   <h1>Spelling B 🐝</h1>
 
   <mat-selection-list [multiple]="false">
-    <mat-list-option *ngFor="let route of sideBarRoutes" [routerLink]="['/' + route]" [value]="route"
-      [selected]="router.url === '/' + route">
-      {{route | uppercase}}
+    <mat-list-option *ngFor="let route of mainService.routes" [routerLink]="route.link" [value]="route.name"
+      [selected]="router.url === route.link">
+      {{ route.name | uppercase}}
     </mat-list-option>
   </mat-selection-list>
 
