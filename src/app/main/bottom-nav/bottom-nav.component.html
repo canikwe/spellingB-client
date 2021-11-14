@@ -1,0 +1,5 @@
+<mat-toolbar class="toolbar-nav">
+  <button *ngFor='let route of mainService.routes' mat-icon-button color='primary' [routerLink]='route.link'>
+    <mat-icon>{{ route.icon }}</mat-icon>
+  </button>
+</mat-toolbar>

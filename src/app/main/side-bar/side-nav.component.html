@@ -1,0 +1,12 @@
+<aside>
+  <h1 class='nav-header'>Spelling B 🐝</h1>
+
+  <mat-selection-list [multiple]="false">
+    <mat-list-option class='nav-link' *ngFor="let route of mainService.routes" [routerLink]="route.link"
+      [value]="route.name" [selected]="router.url === route.link">
+      {{ route.name | uppercase}}
+    </mat-list-option>
+  </mat-selection-list>
+
+  <button mat-raised-button [routerLink]="['/']">Home?</button>
+</aside>
