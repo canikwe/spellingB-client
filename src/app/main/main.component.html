@@ -1,5 +1,5 @@
 <mat-drawer-container class="main-container" [hasBackdrop]="false"
-  *ngIf='!(mainService.isSmallScreen | async); else somethingElse'>
+  *ngIf='!(mainService.isSmallScreen | async); else mobileView'>
   <mat-drawer #drawer mode="push" [opened]='isSideBarOpen'>
     <app-side-nav [isSideBarOpen]='isSideBarOpen' (toggleSideBar)='isSideBarOpen = !isSideBarOpen'></app-side-nav>
   </mat-drawer>
@@ -8,7 +8,7 @@
   </mat-drawer-content>
 </mat-drawer-container>
 
-<ng-template #somethingElse>
+<ng-template #mobileView>
   <router-outlet></router-outlet>
   <app-bottom-nav></app-bottom-nav>
 </ng-template>

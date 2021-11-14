@@ -1,9 +1,9 @@
-<aside id='main-aside'>
-  <h1>Spelling B 🐝</h1>
+<aside>
+  <h1 class='nav-header'>Spelling B 🐝</h1>
 
   <mat-selection-list [multiple]="false">
-    <mat-list-option *ngFor="let route of mainService.routes" [routerLink]="route.link" [value]="route.name"
-      [selected]="router.url === route.link">
+    <mat-list-option class='nav-link' *ngFor="let route of mainService.routes" [routerLink]="route.link"
+      [value]="route.name" [selected]="router.url === route.link">
       {{ route.name | uppercase}}
     </mat-list-option>
   </mat-selection-list>
