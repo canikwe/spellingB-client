@@ -5,3 +5,6 @@
   <app-deck-list [decks]='user.decks'></app-deck-list>
 </section>
 <mat-divider></mat-divider>
+<section class='dashboard-wrapper' *ngIf='randomWord'>
+  <app-word-of-the-day [word]="randomWord"></app-word-of-the-day>
+</section>

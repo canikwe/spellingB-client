@@ -9,4 +9,20 @@ query GetUserForDashboard($id: Int!) {
       createdAt
     }
   }
+
+  RandomWordAndDefinition {
+    word
+    phonetic
+    origin
+    phonetics {
+      text
+    }
+    meanings {
+      partOfSpeech
+      definitions {
+        definition
+        example
+      }
+    }
+  }
 }
