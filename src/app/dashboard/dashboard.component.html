@@ -1,10 +1,17 @@
-<!-- TODO: move wrapper padding to global styles for consistency -->
-<section class='dashboard-wrapper' *ngIf='user'>
-  <!-- TODO: extract to reusable component -->
-  <h1 class='heading'>{{ greeting }}</h1>
-  <app-deck-list [decks]='user.decks'></app-deck-list>
-</section>
-<mat-divider></mat-divider>
-<section class='dashboard-wrapper' *ngIf='randomWord'>
-  <app-word-of-the-day [word]="randomWord"></app-word-of-the-day>
-</section>
+<ng-container *ngIf='!isLoading; else loader'>
+  <section class='dashboard-wrapper' *ngIf='user'>
+    <!-- TODO: extract to reusable component -->
+    <h1 class='heading'>{{ greeting }}</h1>
+    <app-deck-list [decks]='user.decks'></app-deck-list>
+  </section>
+  <mat-divider></mat-divider>
+  <section class='dashboard-wrapper'>
+    <app-word-of-the-day [word]="randomWord" (getNewWord)="handleGetNewWord()"></app-word-of-the-day>
+  </section>
+</ng-container>
+
+<ng-template #loader>
+  <section class='center full-height'>
+    <app-loader></app-loader>
+  </section>
+</ng-template>

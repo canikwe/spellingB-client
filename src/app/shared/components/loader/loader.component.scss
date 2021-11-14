@@ -1,0 +1,44 @@
+.bouncer {
+  display: flex;
+  justify-content: space-around;
+  height: 100px;
+  width: 200px;
+
+  div {
+    height: 20px;
+    width: 20px;
+    background-color: blue;
+    border-radius: 50%;
+    animation: bouncer 0.5s cubic-bezier(0.19, 0.57, 0.3, 0.98) infinite
+      alternate;
+  }
+
+  div:nth-child(2) {
+    animation-delay: 0.1s;
+    opacity: 0.8;
+  }
+
+  div:nth-child(3) {
+    animation-delay: 0.2s;
+    opacity: 0.6;
+  }
+
+  div:nth-child(4) {
+    animation-delay: 0.3s;
+    opacity: 0.4;
+  }
+
+  div:nth-child(5) {
+    animation-delay: 0.4s;
+    opacity: 0.2;
+  }
+}
+
+@keyframes bouncer {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-100px);
+  }
+}

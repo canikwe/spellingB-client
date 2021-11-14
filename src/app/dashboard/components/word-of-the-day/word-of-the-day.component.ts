@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { DictionaryWordRes } from '../../../../generated/graphql';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { DictionaryEntry } from '../../../../generated/graphql';
 
 @Component({
   selector: 'app-word-of-the-day',
@@ -7,7 +7,8 @@ import { DictionaryWordRes } from '../../../../generated/graphql';
   styleUrls: ['./word-of-the-day.component.scss'],
 })
 export class WordOfTheDayComponent implements OnInit {
-  @Input() public word: DictionaryWordRes;
+  @Input() public word: DictionaryEntry;
+  @Output('getNewWord') getNewWord = new EventEmitter();
 
   constructor() {}
 

@@ -4,10 +4,11 @@ import { DeckListComponent } from './components/deck-list/deck-list.component';
 import { DeckListItemComponent } from './components/deck-list-item/deck-list-item.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
-  declarations: [DeckListComponent, DeckListItemComponent],
+  declarations: [DeckListComponent, DeckListItemComponent, LoaderComponent],
   imports: [CommonModule, MatCardModule, MatButtonModule],
-  exports: [DeckListComponent, DeckListItemComponent],
+  exports: [DeckListComponent, DeckListItemComponent, LoaderComponent],
 })
 export class SharedModule {}
