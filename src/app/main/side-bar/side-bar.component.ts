@@ -10,15 +10,16 @@ export class SideBarComponent implements OnInit {
   @Input() isSideBarOpen: boolean;
   @Output('toggleSideBar') toggleSideBar = new EventEmitter();
 
-  constructor(public router: Router) {}
-  activeRoute: string;
-  sideBarRoutes: string[] = [
+  public activeRoute: string;
+  public sideBarRoutes: string[] = [
     'dashboard' /**'play', 'add', 'stats', 'settings' */,
   ];
 
+  constructor(public router: Router) {}
+
   ngOnInit(): void {}
 
-  handleSideBarClick() {
+  handleSideBarClick(): void {
     this.toggleSideBar.emit(!this.isSideBarOpen);
   }
 }
