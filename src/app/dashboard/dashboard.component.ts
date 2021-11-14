@@ -19,6 +19,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   public greeting: string;
   public user: Partial<User>;
   public randomWord: DictionaryWordRes;
+  public isLoading = true;
 
   private subscriptions = new Subscription();
 
@@ -47,6 +48,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   private handleSuccess = (
     res: ApolloQueryResult<GetUserForDashboardQuery>
   ): void => {
+    this.isLoading = false; // TODO: This needs to be in the response + error handlers as well
     this.user = res.data.User as any;
     this.randomWord = res.data.RandomWordAndDefinition;
     this.greeting = `Good ${this.greetingTime}, ${this.user.firstName}`;
@@ -57,6 +59,4 @@ export class DashboardComponent implements OnInit, OnDestroy {
       ? 'Evening'
       : 'Morning'; /** TODO: add a better parser for afternoon greeting as well */
   }
-
-  // private subscribeToScreen
 }
