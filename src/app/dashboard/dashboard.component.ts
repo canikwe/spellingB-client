@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { DashboardService } from '../_services/dashboard/dashboard.service';
-import { GetUserForDashboardQuery, User } from '../../generated/graphql';
+import {
+  DictionaryWordRes,
+  GetUserForDashboardQuery,
+  User,
+} from '../../generated/graphql';
 import { ApolloQueryResult } from '@apollo/client/core';
 import { QueryResponseService } from '../_services/query-response/query-response.service';
 
@@ -12,6 +16,7 @@ import { QueryResponseService } from '../_services/query-response/query-response
 export class DashboardComponent implements OnInit {
   public greeting: string;
   public user: Partial<User>;
+  public randomWord: DictionaryWordRes;
 
   constructor(
     private dashboardService: DashboardService,
@@ -34,6 +39,7 @@ export class DashboardComponent implements OnInit {
     res: ApolloQueryResult<GetUserForDashboardQuery>
   ) => {
     this.user = res.data.User as any;
+    this.randomWord = res.data.RandomWordAndDefinition;
     this.greeting = `Good ${this.greetingTime}, ${this.user.firstName}`;
   };
 

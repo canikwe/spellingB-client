@@ -3,7 +3,8 @@
   "compileOnSave": false,
   "angularCompilerOptions": {
     "enableIvy": false,
-    "strictTemplates": true
+    "strictTemplates": true,
+    "fullTemplateTypeCheck": true
   },
   "compilerOptions": {
     "baseUrl": "./",

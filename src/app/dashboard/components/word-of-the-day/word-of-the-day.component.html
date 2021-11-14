@@ -1,0 +1,13 @@
+<h1 class='heading'>Word of the Day</h1>
+<h3>{{ word.word }}</h3><span>{{ word.phonetic }}</span>
+<div *ngFor='let meaning of word.meanings'>
+  <span>{{ meaning.partOfSpeech }}</span>
+  <ol>
+    <li *ngFor='let definition of meaning.definitions'>
+      <span>{{ definition.definition }}</span>
+      <div>
+        <em>{{ definition.example }}</em>
+      </div>
+    </li>
+  </ol>
+</div>

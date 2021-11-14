@@ -171,6 +171,21 @@ export type DeckWordWhereUniqueInput = {
   id?: Maybe<Scalars['Int']>;
 };
 
+export type Definition = {
+  __typename?: 'Definition';
+  definition?: Maybe<Scalars['String']>;
+  example?: Maybe<Scalars['String']>;
+};
+
+export type DictionaryWordRes = {
+  __typename?: 'DictionaryWordRes';
+  word?: Maybe<Scalars['String']>;
+  phonetic?: Maybe<Scalars['String']>;
+  phonetics?: Maybe<Array<Phonetic>>;
+  origin?: Maybe<Scalars['String']>;
+  meanings?: Maybe<Array<Meaning>>;
+};
+
 export type FindManyDeckArgs = {
   where?: Maybe<DeckWhereInput>;
   orderBy?: Maybe<Array<DeckOrderByWithRelationInput>>;
@@ -218,6 +233,12 @@ export type IntFilter = {
   not?: Maybe<NestedIntFilter>;
 };
 
+export type Meaning = {
+  __typename?: 'Meaning';
+  partOfSpeech?: Maybe<Scalars['String']>;
+  definitions?: Maybe<Array<Definition>>;
+};
+
 export type NestedBoolFilter = {
   equals?: Maybe<Scalars['Boolean']>;
   not?: Maybe<NestedBoolFilter>;
@@ -259,12 +280,20 @@ export type NestedStringFilter = {
   not?: Maybe<NestedStringFilter>;
 };
 
+export type Phonetic = {
+  __typename?: 'Phonetic';
+  text?: Maybe<Scalars['String']>;
+  audio?: Maybe<Scalars['String']>;
+};
+
 export type Query = {
   __typename?: 'Query';
   Users: Array<User>;
   User: User;
   Words: Array<Word>;
   Word: Word;
+  WordsAndDefinitions?: Maybe<Array<DictionaryWordRes>>;
+  RandomWordAndDefinition?: Maybe<DictionaryWordRes>;
   Decks: Array<Deck>;
   Deck: Deck;
   DeckWords: Array<DeckWord>;
@@ -289,6 +318,11 @@ export type QueryWordsArgs = {
 
 export type QueryWordArgs = {
   id: Scalars['Int'];
+};
+
+
+export type QueryWordsAndDefinitionsArgs = {
+  word: Scalars['String'];
 };
 
 
@@ -470,7 +504,21 @@ export type GetUserForDashboardQuery = (
       { __typename?: 'Deck' }
       & Pick<Deck, 'id' | 'title' | 'createdAt'>
     )>> }
-  ) }
+  ), RandomWordAndDefinition?: Maybe<(
+    { __typename?: 'DictionaryWordRes' }
+    & Pick<DictionaryWordRes, 'word' | 'phonetic' | 'origin'>
+    & { phonetics?: Maybe<Array<(
+      { __typename?: 'Phonetic' }
+      & Pick<Phonetic, 'text'>
+    )>>, meanings?: Maybe<Array<(
+      { __typename?: 'Meaning' }
+      & Pick<Meaning, 'partOfSpeech'>
+      & { definitions?: Maybe<Array<(
+        { __typename?: 'Definition' }
+        & Pick<Definition, 'definition' | 'example'>
+      )>> }
+    )>> }
+  )> }
 );
 
 export type GetUserByIdQueryVariables = Exact<{
@@ -527,6 +575,21 @@ export const GetUserForDashboardDocument = gql`
       id
       title
       createdAt
+    }
+  }
+  RandomWordAndDefinition {
+    word
+    phonetic
+    origin
+    phonetics {
+      text
+    }
+    meanings {
+      partOfSpeech
+      definitions {
+        definition
+        example
+      }
     }
   }
 }

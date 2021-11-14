@@ -4,9 +4,10 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { DashboardComponent } from './dashboard.component';
 import { MatDividerModule } from '@angular/material/divider';
+import { WordOfTheDayComponent } from './components/word-of-the-day/word-of-the-day.component';
 
 @NgModule({
-  declarations: [DashboardComponent],
+  declarations: [DashboardComponent, WordOfTheDayComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,
