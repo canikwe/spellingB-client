@@ -1,0 +1,17 @@
+query GetRandomWordAndDefinition {
+  RandomWordAndDefinition {
+    word
+    phonetic
+    origin
+    phonetics {
+      text
+    }
+    meanings {
+      partOfSpeech
+      definitions {
+        definition
+        example
+      }
+    }
+  }
+}

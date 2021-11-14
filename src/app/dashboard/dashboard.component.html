@@ -5,8 +5,8 @@
     <app-deck-list [decks]='user.decks'></app-deck-list>
   </section>
   <mat-divider></mat-divider>
-  <section class='dashboard-wrapper' *ngIf='randomWord; else loader'>
-    <app-word-of-the-day [word]="randomWord"></app-word-of-the-day>
+  <section class='dashboard-wrapper'>
+    <app-word-of-the-day [word]="randomWord" (getNewWord)="handleGetNewWord()"></app-word-of-the-day>
   </section>
 </ng-container>
 

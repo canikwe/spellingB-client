@@ -177,8 +177,8 @@ export type Definition = {
   example?: Maybe<Scalars['String']>;
 };
 
-export type DictionaryWordRes = {
-  __typename?: 'DictionaryWordRes';
+export type DictionaryEntry = {
+  __typename?: 'DictionaryEntry';
   word?: Maybe<Scalars['String']>;
   phonetic?: Maybe<Scalars['String']>;
   phonetics?: Maybe<Array<Phonetic>>;
@@ -292,8 +292,8 @@ export type Query = {
   User: User;
   Words: Array<Word>;
   Word: Word;
-  WordsAndDefinitions?: Maybe<Array<DictionaryWordRes>>;
-  RandomWordAndDefinition?: Maybe<DictionaryWordRes>;
+  WordsAndDefinitions?: Maybe<Array<DictionaryEntry>>;
+  RandomWordAndDefinition?: Maybe<DictionaryEntry>;
   Decks: Array<Deck>;
   Deck: Deck;
   DeckWords: Array<DeckWord>;
@@ -505,8 +505,8 @@ export type GetUserForDashboardQuery = (
       & Pick<Deck, 'id' | 'title' | 'createdAt'>
     )>> }
   ), RandomWordAndDefinition?: Maybe<(
-    { __typename?: 'DictionaryWordRes' }
-    & Pick<DictionaryWordRes, 'word' | 'phonetic' | 'origin'>
+    { __typename?: 'DictionaryEntry' }
+    & Pick<DictionaryEntry, 'word' | 'phonetic' | 'origin'>
     & { phonetics?: Maybe<Array<(
       { __typename?: 'Phonetic' }
       & Pick<Phonetic, 'text'>
@@ -542,6 +542,28 @@ export type GetUsersQuery = (
   & { Users: Array<(
     { __typename?: 'User' }
     & Pick<User, 'id' | 'firstName' | 'lastName' | 'email'>
+  )> }
+);
+
+export type GetRandomWordAndDefinitionQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetRandomWordAndDefinitionQuery = (
+  { __typename?: 'Query' }
+  & { RandomWordAndDefinition?: Maybe<(
+    { __typename?: 'DictionaryEntry' }
+    & Pick<DictionaryEntry, 'word' | 'phonetic' | 'origin'>
+    & { phonetics?: Maybe<Array<(
+      { __typename?: 'Phonetic' }
+      & Pick<Phonetic, 'text'>
+    )>>, meanings?: Maybe<Array<(
+      { __typename?: 'Meaning' }
+      & Pick<Meaning, 'partOfSpeech'>
+      & { definitions?: Maybe<Array<(
+        { __typename?: 'Definition' }
+        & Pick<Definition, 'definition' | 'example'>
+      )>> }
+    )>> }
   )> }
 );
 
@@ -642,6 +664,36 @@ export const GetUsersDocument = gql`
   })
   export class GetUsersGQL extends Apollo.Query<GetUsersQuery, GetUsersQueryVariables> {
     document = GetUsersDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetRandomWordAndDefinitionDocument = gql`
+    query GetRandomWordAndDefinition {
+  RandomWordAndDefinition {
+    word
+    phonetic
+    origin
+    phonetics {
+      text
+    }
+    meanings {
+      partOfSpeech
+      definitions {
+        definition
+        example
+      }
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetRandomWordAndDefinitionGQL extends Apollo.Query<GetRandomWordAndDefinitionQuery, GetRandomWordAndDefinitionQueryVariables> {
+    document = GetRandomWordAndDefinitionDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

@@ -6,6 +6,8 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { DashboardComponent } from './dashboard.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { WordOfTheDayComponent } from './components/word-of-the-day/word-of-the-day.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [DashboardComponent, WordOfTheDayComponent],
@@ -15,6 +17,8 @@ import { WordOfTheDayComponent } from './components/word-of-the-day/word-of-the-
     SharedModule,
     MatDividerModule,
     LayoutModule,
+    MatIconModule,
+    MatButtonModule,
   ],
 })
 export class DashboardModule {}

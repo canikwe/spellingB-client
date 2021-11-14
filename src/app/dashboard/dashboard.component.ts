@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DashboardService } from '../_services/dashboard/dashboard.service';
 import {
-  DictionaryWordRes,
+  GetRandomWordAndDefinitionQuery,
   GetUserForDashboardQuery,
   User,
 } from '../../generated/graphql';
@@ -9,6 +9,7 @@ import { ApolloQueryResult } from '@apollo/client/core';
 import { QueryResponseService } from '../_services/query-response/query-response.service';
 import { Subscription } from 'rxjs';
 import { MainService } from '../_services/main/main.service';
+import { DictionaryEntry } from '../../generated/graphql';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,7 +19,7 @@ import { MainService } from '../_services/main/main.service';
 export class DashboardComponent implements OnInit, OnDestroy {
   public greeting: string;
   public user: Partial<User>;
-  public randomWord: DictionaryWordRes;
+  public randomWord: DictionaryEntry;
   public isLoading = true;
 
   private subscriptions = new Subscription();
@@ -37,21 +38,38 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.subscriptions.unsubscribe();
   }
 
-  private subscribeToUserInfo(): void {
-    const observable = this.dashboardService.getUser();
+  handleGetNewWord() {
+    this.randomWord = null;
+    const observable = this.dashboardService.getRandomWord();
     observable.subscribe(
-      (res) => this.queryResponseService.handleRes(res, this.handleSuccess),
+      (res) =>
+        this.queryResponseService.handleRes(res, this.handleGetWordSuccess),
       this.queryResponseService.handleError
     );
   }
 
-  private handleSuccess = (
+  private subscribeToUserInfo(): void {
+    const observable = this.dashboardService.getUser();
+    observable.subscribe(
+      (res) =>
+        this.queryResponseService.handleRes(res, this.handleInitialDataSuccess),
+      this.queryResponseService.handleError
+    );
+  }
+
+  private handleInitialDataSuccess = (
     res: ApolloQueryResult<GetUserForDashboardQuery>
   ): void => {
     this.isLoading = false; // TODO: This needs to be in the response + error handlers as well
     this.user = res.data.User as any;
     this.randomWord = res.data.RandomWordAndDefinition;
     this.greeting = `Good ${this.greetingTime}, ${this.user.firstName}`;
+  };
+
+  private handleGetWordSuccess = (
+    res: ApolloQueryResult<GetRandomWordAndDefinitionQuery>
+  ): void => {
+    this.randomWord = res.data.RandomWordAndDefinition;
   };
 
   private get greetingTime(): 'Evening' | 'Morning' {

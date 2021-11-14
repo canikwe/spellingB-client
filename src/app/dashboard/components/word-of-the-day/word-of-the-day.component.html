@@ -1,13 +1,28 @@
-<h1 class='heading'>Word of the Day</h1>
-<h3>{{ word.word }}</h3><span>{{ word.phonetic }}</span>
-<div *ngFor='let meaning of word.meanings'>
-  <span>{{ meaning.partOfSpeech }}</span>
-  <ol>
-    <li *ngFor='let definition of meaning.definitions'>
-      <span>{{ definition.definition }}</span>
-      <div>
-        <em>{{ definition.example }}</em>
-      </div>
-    </li>
-  </ol>
-</div>
+<h1 class='heading'>
+  <span>Word of the Day</span>
+  <button mat-icon-button (click)='getNewWord.emit("clicked")' color="primary"
+    aria-label="Example icon button with a plus one icon">
+    <mat-icon>plus_one</mat-icon>
+  </button>
+</h1>
+<ng-container *ngIf='word; else loader'>
+  <h3>{{ word.word }}</h3>
+  <span>{{ word.phonetic }}</span>
+  <div *ngFor='let meaning of word.meanings'>
+    <span>{{ meaning.partOfSpeech }}</span>
+    <ol>
+      <li *ngFor='let definition of meaning.definitions'>
+        <span>{{ definition.definition }}</span>
+        <div>
+          <em>{{ definition.example }}</em>
+        </div>
+      </li>
+    </ol>
+  </div>
+</ng-container>
+
+<ng-template #loader>
+  <section class='center full-height'>
+    <app-loader></app-loader>
+  </section>
+</ng-template>
