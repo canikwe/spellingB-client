@@ -11,7 +11,6 @@ export class MainService {
     { name: 'decks', icon: 'content_copy', link: '/decks' },
     { name: 'add', icon: 'add_circle_outline', link: '/add' },
     { name: 'stats', icon: 'bar_chart', link: '/stats' },
-    // { name: 'more', icon: 'more_horiz', link: '/more' },
+    { name: 'more', icon: 'more_horiz', link: '/more' },
   ];
-  constructor() {}
 }
