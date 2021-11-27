@@ -1,9 +1,13 @@
-.dashboard-wrapper {
-  padding: 5em;
+.page-wrapper {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.section-wrapper {
   display: grid;
-  grid-template-rows: 30% 70%;
+  grid-template-rows: auto 1fr;
   row-gap: 2em;
-  width: 79%; /* temporary hack. TODO: figure out misalignment issue when width is 100%*/
+  padding: 30px 0;
 }
 
 .heading {
@@ -19,4 +23,5 @@
 .full-height {
   height: 100vh;
   width: 80vw;
+  margin: 0 auto;
 }
