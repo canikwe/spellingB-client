@@ -1,15 +1,15 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { DashboardService } from '../_services/dashboard/dashboard.service';
-import {
-  GetRandomWordAndDefinitionQuery,
-  GetUserForDashboardQuery,
-  User,
-} from '../../generated/graphql';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ApolloQueryResult } from '@apollo/client/core';
-import { QueryResponseService } from '../_services/query-response/query-response.service';
 import { Subscription } from 'rxjs';
-import { MainService } from '../_services/main/main.service';
-import { DictionaryEntry } from '../../generated/graphql';
+import { MainService } from 'src/app/_services/main/main.service';
+import {
+  User,
+  DictionaryEntry,
+  GetUserForDashboardQuery,
+  GetRandomWordAndDefinitionQuery,
+} from 'src/generated/graphql';
+import { DashboardService } from 'src/app/_services/dashboard/dashboard.service';
+import { QueryResponseService } from 'src/app/_services/query-response/query-response.service';
 
 @Component({
   selector: 'app-dashboard',
